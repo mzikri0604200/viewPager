@@ -17,31 +17,40 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
 
-    private ViewPager2 viewPager2;
-    private Handler sliderHandler = new Handler();
+    ViewPager2 viewPager2;
+    ArrayList<ViewPagerItem> viewPagerItemArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        viewPager2 = findViewById(R.id.viewPagerImageSlider);
+        viewPager2 = findViewById(R.id.viewpager);
 
-        List<SliderItem> sliderItems = new ArrayList<>();
-        sliderItems.add(new SliderItem(R.drawable.image_1));
-        sliderItems.add(new SliderItem(R.drawable.image_2));
-        sliderItems.add(new SliderItem(R.drawable.image_3));
-        sliderItems.add(new SliderItem(R.drawable.image_4));
+        int[] images = {R.drawable.image_1,R.drawable.image_2,R.drawable.image_3,R.drawable.image_4,R.drawable.image_3};
+        String[] heading = {"Baked","Grilled","Dessert","Italian","Shakes"};
+        String[] desc = {"descBaked","descGrilled","descDessert","descItalian","descShakes"};
+        int[] logo = {R.drawable.silver,R.drawable.gold,R.drawable.diamond,R.drawable.gold,R.drawable.silver};
 
-        viewPager2.setAdapter(new SliderAdapater(sliderItems, viewPager2));
+        viewPagerItemArrayList = new ArrayList<>();
 
+        for (int i =0; i< images.length ; i++){
+            ViewPagerItem viewPagerItem = new ViewPagerItem(images[i],logo[i], heading[i],desc[i]);
+            viewPagerItemArrayList.add(viewPagerItem);
+        }
+
+        VPAdapter vpAdapter = new VPAdapter(viewPagerItemArrayList);
+
+        viewPager2.setAdapter(vpAdapter);
         viewPager2.setClipToPadding(false);
         viewPager2.setClipChildren(false);
-        viewPager2.setOffscreenPageLimit(3);
-        viewPager2.getChildAt(0 ).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+        viewPager2.setOffscreenPageLimit(2);
+
+        viewPager2.getChildAt(0).setOverScrollMode(View.OVER_SCROLL_NEVER);
+//        viewPager2.setCurrentItem(4);
 
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
+        compositePageTransformer.addTransformer(new MarginPageTransformer(5));
         compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
             @Override
             public void transformPage(@NonNull View page, float position) {
@@ -52,21 +61,5 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager2.setPageTransformer(compositePageTransformer);
 
-        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-
-                sliderHandler.removeCallbacks(sliderRunnable);
-                sliderHandler.postDelayed(sliderRunnable, 3000);
-            }
-        });
     }
-
-    private Runnable sliderRunnable =  new Runnable() {
-        @Override
-        public void run() {
-            viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1);
-        }
-    };
 }
