@@ -10,12 +10,21 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.ImageButton;
+
+import net.cachapa.expandablelayout.ExpandableLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ExpandableLayout expandableLayout0, expandable_lock_0;
+    private ExpandableLayout expandableLayout1, expandable_lock_1;
+    private ExpandableLayout expandableLayout2, expandable_lock_2;
+    private ImageButton expand_button;
+    private ImageButton expand_button_1;
+    private ImageButton expand_button_2;
 
     ViewPager2 viewPager2;
     ArrayList<ViewPagerItem> viewPagerItemArrayList;
@@ -27,15 +36,15 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager2 = findViewById(R.id.viewpager);
 
-        int[] images = {R.drawable.image_1,R.drawable.image_2,R.drawable.image_3,R.drawable.image_4,R.drawable.image_3};
-        String[] heading = {"Baked","Grilled","Dessert","Italian","Shakes"};
-        String[] desc = {"descBaked","descGrilled","descDessert","descItalian","descShakes"};
-        int[] logo = {R.drawable.silver,R.drawable.gold,R.drawable.diamond,R.drawable.gold,R.drawable.silver};
+//        String[] heading = {"Baked","Grilled","Dessert","Italian","Shakes"};
+        String[] title = {"Silver","Gold","Diamond"};
+        int[] piagam = {R.drawable.silver,R.drawable.gold,R.drawable.diamond};
+        int[] bg = {R.drawable.bg_silver,R.drawable.bg_gold,R.drawable.bg_diamond};
 
         viewPagerItemArrayList = new ArrayList<>();
 
-        for (int i =0; i< images.length ; i++){
-            ViewPagerItem viewPagerItem = new ViewPagerItem(images[i],logo[i], heading[i],desc[i]);
+        for (int i =0; i< piagam.length ; i++){
+            ViewPagerItem viewPagerItem = new ViewPagerItem(piagam[i], bg[i], title[i]);
             viewPagerItemArrayList.add(viewPagerItem);
         }
 
@@ -47,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager2.setOffscreenPageLimit(2);
 
         viewPager2.getChildAt(0).setOverScrollMode(View.OVER_SCROLL_NEVER);
-//        viewPager2.setCurrentItem(4);
+        viewPager2.setCurrentItem(1);
 
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
         compositePageTransformer.addTransformer(new MarginPageTransformer(5));
@@ -59,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        viewPager2.setPageTransformer(compositePageTransformer);
 
+        viewPager2.setPageTransformer(compositePageTransformer);
     }
 }

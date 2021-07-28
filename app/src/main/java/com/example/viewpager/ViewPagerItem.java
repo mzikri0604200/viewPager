@@ -2,13 +2,13 @@ package com.example.viewpager;
 
 public class ViewPagerItem {
 
-    int imageID, logo;
-    String heading, description;
+    int bg, piagam;
+    String title, description;
 
-    public ViewPagerItem(int imageID, int logo, String heading, String description) {
-        this.imageID = imageID;
-        this.logo = logo;
-        this.heading = heading;
-        this.description = description;
+    public ViewPagerItem(int piagam, int bg, String title) {
+        this.piagam = piagam;
+        this.bg = bg;
+        this.title = title;
+//        this.description = description;
     }
 }

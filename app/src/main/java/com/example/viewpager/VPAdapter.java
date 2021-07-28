@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,10 +34,10 @@ public class VPAdapter extends RecyclerView.Adapter<VPAdapter.ViewHolder> {
 
         ViewPagerItem viewPagerItem = viewPagerItemArrayList.get(position);
 
-        holder.imageView.setImageResource(viewPagerItem.imageID);
-        holder.tcHeading.setText(viewPagerItem.heading);
-        holder.tvDesc.setText(viewPagerItem.description);
-        holder.ic_logo.setImageResource(viewPagerItem.logo);
+//        holder.tvDesc.setText(viewPagerItem.description);
+        holder.piagam.setImageResource(viewPagerItem.piagam);
+        holder.bg.setBackgroundResource(viewPagerItem.bg);
+        holder.title.setText(viewPagerItem.title);
 
     }
 
@@ -47,16 +48,17 @@ public class VPAdapter extends RecyclerView.Adapter<VPAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView imageView, ic_logo;
-        TextView tcHeading, tvDesc;
+        LinearLayout bg;
+        ImageView piagam;
+        TextView title, tvDesc;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.ivimage);
-            tcHeading = itemView.findViewById(R.id.tvHeading);
-            tvDesc = itemView.findViewById(R.id.tvDesc);
-            ic_logo = itemView.findViewById(R.id.ic_logo);
+//            tvDesc = itemView.findViewById(R.id.tvDesc);
+            piagam = itemView.findViewById(R.id.piagam);
+            bg = itemView.findViewById(R.id.bg_card);
+            title = itemView.findViewById(R.id.title);
         }
     }
 
