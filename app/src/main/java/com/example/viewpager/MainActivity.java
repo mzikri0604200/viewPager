@@ -18,14 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-    private ExpandableLayout expandableLayout0, expandable_lock_0;
-    private ExpandableLayout expandableLayout1, expandable_lock_1;
-    private ExpandableLayout expandableLayout2, expandable_lock_2;
-    private ImageButton expand_button;
-    private ImageButton expand_button_1;
-    private ImageButton expand_button_2;
-
     ViewPager2 viewPager2;
     ArrayList<ViewPagerItem> viewPagerItemArrayList;
 
@@ -68,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         viewPager2.setPageTransformer(compositePageTransformer);
+
     }
 }
